@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "244765825007",
+    "project_id": "bd-grupo-1-cliclo-4",
+    "storage_bucket": "bd-grupo-1-cliclo-4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244765825007:android:9840f3d58f2b6f4400c81a",
+        "android_client_info": {
+          "package_name": "com.unbosque.proyecto_grupo1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244765825007-stcab2bgq8hdo7a4t253cb3468cr4gq8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkToRbaE2xhHWpCmf-ImTeSpQHBDzwPqg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244765825007-stcab2bgq8hdo7a4t253cb3468cr4gq8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

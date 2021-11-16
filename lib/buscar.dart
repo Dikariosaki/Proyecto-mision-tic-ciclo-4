@@ -10,7 +10,6 @@ class buscar extends StatefulWidget{
 
 
 class buscarApp extends State<buscar>{
-
   @override
  Widget build(BuildContext context){
     return Scaffold(

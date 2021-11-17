@@ -1,31 +1,30 @@
 import 'Package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ShopRegister extends StatefulWidget {
+class RegistroUser extends StatefulWidget {
   @override
-  ShopRegisterApp createState() => ShopRegisterApp();
+  RegistroUserApp createState() => RegistroUserApp();
 }
 
 
-
-class ShopRegisterApp extends State<ShopRegister>{
+class RegistroUserApp extends State<RegistroUser>{
   @override
-  TextEditingController nombreTienda = TextEditingController();
-  TextEditingController RutaImagen = TextEditingController();
-  TextEditingController descr_tienda = TextEditingController();
-  TextEditingController webSite = TextEditingController();
+  TextEditingController nombreUser = TextEditingController();
+  TextEditingController correo = TextEditingController();
+  TextEditingController telefono = TextEditingController();
+  TextEditingController password = TextEditingController();
   final firebase=FirebaseFirestore.instance;
 
-  registrar() async{
+  registrarUsuario() async{
     try{
       await firebase
-          .collection("Tiendas")
+          .collection("usuarios")
           .doc()
           .set({
-        "nombreTienda":nombreTienda.text,
-        "Ruta":RutaImagen.text,
-        "descr":descr_tienda.text,
-        "webSite":webSite.text
+        "NombreUsuario":nombreUser.text,
+        "Correo":correo.text,
+        "Telefono":telefono.text,
+        "Password":password.text
       });
     }
     catch(e){
@@ -48,10 +47,10 @@ class ShopRegisterApp extends State<ShopRegister>{
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // NOMBRE TIENDA
                 child: TextField(
-                  controller: nombreTienda,
+                  controller: nombreUser,
                   decoration: InputDecoration(
-                    labelText: "Nombre tienda",
-                    hintText: "Digite nombre de la tienda",
+                    labelText: "Nombre ",
+                    hintText: "Digite nombre de usuario",
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(20)
                     ),
@@ -62,10 +61,10 @@ class ShopRegisterApp extends State<ShopRegister>{
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // RUTA IMÁMGEN
                 child: TextField(
-                  controller: RutaImagen,
+                  controller: correo,
                   decoration: InputDecoration(
-                      labelText: "ruta de imagen",
-                      hintText: "Digite ruta de la imagen",
+                      labelText: "Correo",
+                      hintText: "Digite su Correo",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)
                       )
@@ -76,10 +75,11 @@ class ShopRegisterApp extends State<ShopRegister>{
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // DESCRIPCIÓN TIENDA
                 child: TextField(
-                  controller: descr_tienda,
+                  obscureText: true,
+                  controller: telefono,
                   decoration: InputDecoration(
-                      labelText: "descripcion tienda",
-                      hintText: "Digite descripción de la tienda",
+                      labelText: "Telefono",
+                      hintText: "Digite su telefono",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)
                       )
@@ -90,10 +90,10 @@ class ShopRegisterApp extends State<ShopRegister>{
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // PÁGINA WEB
                 child: TextField(
-                  controller: webSite,
+                  controller: password,
                   decoration: InputDecoration(
-                      labelText: "pagina web",
-                      hintText: "Digite pagina web de la tienda",
+                      labelText: "contraseña",
+                      hintText: "Digite su Contraseña",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20)
                       )
@@ -104,11 +104,11 @@ class ShopRegisterApp extends State<ShopRegister>{
                   padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                   child: ElevatedButton(
                     onPressed: (){
-                      registrar();
-                      nombreTienda.clear();
-                      RutaImagen.clear();
-                      descr_tienda.clear();
-                      webSite.clear();
+                      registrarUsuario();
+                      nombreUser.clear();
+                      correo.clear();
+                      telefono.clear();
+                      password.clear();
                     },
                     child: Text("Registrar"),
                   )

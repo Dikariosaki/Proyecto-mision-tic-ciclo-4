@@ -1,15 +1,11 @@
 import 'Package:flutter/material.dart';
 
-class buscar extends StatefulWidget{
+class buscar extends StatefulWidget {
   @override
-  buscarApp createdState() => buscarApp();
-
-  @override
-  noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  BuscarApp createState() => BuscarApp();
 }
 
-
-class buscarApp extends State<buscar>{
+class BuscarApp extends State<buscar>{
   @override
  Widget build(BuildContext context){
     return Scaffold(

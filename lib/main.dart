@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
 
 class Home extends StatefulWidget {
   @override
-  HomeStart CreateState() => HomeStart();
+  HomeStart createState() => HomeStart();
 }
 
 class HomeStart extends State<Home> {
@@ -65,7 +65,10 @@ class HomeStart extends State<Home> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => buscar()));
                       },
-                      child: Text("buscar"))),
+                      child: Text("buscar"),
+
+                  )
+              ),
               Padding(
                   padding:
                   EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
@@ -75,7 +78,9 @@ class HomeStart extends State<Home> {
                         Navigator.push(context,
                             MaterialPageRoute(builder: (_) => shop()));
                       },
-                      child: Text("Listado de tiendas"))),
+                      child: Text("Listado de tiendas"),
+                  )
+              ),
               Padding(
                   padding:
                   EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
@@ -83,9 +88,11 @@ class HomeStart extends State<Home> {
                       onPressed: () {
                         print("Presionado");
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => shopRegister()));
+                            MaterialPageRoute(builder: (_) => ShopRegister()));
                       },
-                      child: Text("registrar tiendas")))
+                      child: Text("registrar tiendas"),
+                  )
+              )
             ],
           ),
         ),

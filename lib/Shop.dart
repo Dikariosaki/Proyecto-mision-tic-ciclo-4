@@ -22,7 +22,7 @@ class ShopApp extends State <shop>{
                 child: Text(
                   "Comidas rapidas El gordo",
                   style: TextStyle(
-                    fontWeight: FontWeight.bold;
+                    fontWeight: FontWeight.bold
                   )
                 ),
               ),
@@ -52,7 +52,7 @@ class ShopApp extends State <shop>{
           titleSction
         ],
       )
-    )
+    );
   }
 
 }

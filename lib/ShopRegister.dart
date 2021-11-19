@@ -7,7 +7,6 @@ class ShopRegister extends StatefulWidget {
 }
 
 
-
 class ShopRegisterApp extends State<ShopRegister>{
   @override
   TextEditingController nombreTienda = TextEditingController();

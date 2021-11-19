@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'buscar.dart';
 import 'Shop.dart';
 import 'package:proyecto_grupo1/ShopRegister.dart';
+import 'gestionUsuario.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,39 +61,47 @@ class HomeStart extends State<Home> {
                   padding:
                       EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
                   child: ElevatedButton(
-                      onPressed: () {
-                        print("Presionado");
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => buscar()));
-                      },
-                      child: Text("buscar"),
-
-                  )
-              ),
+                    onPressed: () {
+                      print("Presionado");
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => buscar()));
+                    },
+                    child: Text("buscar"),
+                  )),
               Padding(
                   padding:
-                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
                   child: ElevatedButton(
-                      onPressed: () {
-                        print("Presionado");
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => shop()));
-                      },
-                      child: Text("Listado de tiendas"),
-                  )
-              ),
+                    onPressed: () {
+                      print("Presionado");
+                      Navigator.push(
+                          context, MaterialPageRoute(builder: (_) => shop()));
+                    },
+                    child: Text("Listado de tiendas"),
+                  )),
               Padding(
                   padding:
-                  EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
                   child: ElevatedButton(
-                      onPressed: () {
-                        print("Presionado");
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (_) => ShopRegister()));
-                      },
-                      child: Text("registrar tiendas"),
-                  )
-              )
+                    onPressed: () {
+                      print("Presionado");
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => ShopRegister()));
+                    },
+                    child: Text("registrar tiendas"),
+                  )),
+              Padding(
+                padding:
+                    EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    //print("presionado");
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => GestionUsuario()));
+                  },
+                  child: Text('Gestión Usuario'),
+                ),
+              ),
             ],
           ),
         ),

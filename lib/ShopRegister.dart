@@ -1,18 +1,17 @@
-import 'Package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ShopRegister extends StatefulWidget {
   @override
   ShopRegisterApp createState() => ShopRegisterApp();
 }
-
-
-class ShopRegisterApp extends State<ShopRegister>{
+//
+class ShopRegisterApp extends State<ShopRegister> {
   @override
-  TextEditingController nombreTienda = TextEditingController();
-  TextEditingController RutaImagen = TextEditingController();
-  TextEditingController descr_tienda = TextEditingController();
-  TextEditingController webSite = TextEditingController();
+  TextEditingController nombreTienda =TextEditingController();
+  TextEditingController rutaImagen=TextEditingController();
+  TextEditingController descr_tienda=TextEditingController();
+  TextEditingController webSite =TextEditingController();
   final firebase=FirebaseFirestore.instance;
 
   registrar() async{
@@ -22,12 +21,12 @@ class ShopRegisterApp extends State<ShopRegister>{
           .doc()
           .set({
         "nombreTienda":nombreTienda.text,
-        "Ruta":RutaImagen.text,
-        "descr":descr_tienda.text,
+        "ruta":rutaImagen.text,
+        "descrip":descr_tienda.text,
         "webSite":webSite.text
       });
     }
-    catch(e){
+    catch (e){
       print(e);
     }
   }
@@ -61,7 +60,7 @@ class ShopRegisterApp extends State<ShopRegister>{
                 padding: EdgeInsets.only(left:15,top: 15,right: 15,bottom: 0),
                 // RUTA IMÁMGEN
                 child: TextField(
-                  controller: RutaImagen,
+                  controller: rutaImagen,
                   decoration: InputDecoration(
                       labelText: "ruta de imagen",
                       hintText: "Digite ruta de la imagen",
@@ -105,9 +104,10 @@ class ShopRegisterApp extends State<ShopRegister>{
                     onPressed: (){
                       registrar();
                       nombreTienda.clear();
-                      RutaImagen.clear();
+                      rutaImagen.clear();
                       descr_tienda.clear();
                       webSite.clear();
+
                     },
                     child: Text("Registrar"),
                   )
@@ -115,6 +115,7 @@ class ShopRegisterApp extends State<ShopRegister>{
             ],
           ),
         )
+
     );
   }
 }

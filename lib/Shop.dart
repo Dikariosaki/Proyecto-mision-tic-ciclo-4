@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'ShopInterface.dart';
 
 class shop extends  StatefulWidget{
   @override
@@ -37,9 +38,12 @@ class ShopApp extends State <shop>{
           Container(
             width: 80,
             height: 80,
-            child: Image.asset("Image/Hambuguesas.jpg"),
+            child: Image.asset("Image/comidarapida.png"),
           ),
-          ElevatedButton(onPressed: () {}, child: Text("Entrar"))
+          ElevatedButton(onPressed: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (_) => ShopInterface()));
+          }, child: Text("Entrar"))
           ],
       ),
     );

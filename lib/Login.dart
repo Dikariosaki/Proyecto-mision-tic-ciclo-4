@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'Package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'buscar.dart';
@@ -12,7 +10,7 @@ class Login extends StatefulWidget {
 class LoginApp extends State<Login> {
   TextEditingController correo = TextEditingController();
   TextEditingController pass = TextEditingController();
-  final firebase = FirebaseFirestore.instance;
+  //  final firebase = FirebaseFirestore.instance;
 
   int flag =0;
   validarDatos() async {

@@ -67,7 +67,8 @@ class HomeStart extends State<Home> {
                           context, MaterialPageRoute(builder: (_) => buscar()));
                     },
                     child: Text("buscar"),
-                  )),
+                  )
+              ),
               Padding(
                   padding:
                       EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),

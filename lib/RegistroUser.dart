@@ -28,6 +28,8 @@ class RegistroUserApp extends State<RegistroUser> {
   }
 
   Widget build(BuildContext context) {
+
+
     ///++++++++++++++++++++++++++++
     return Scaffold(
         appBar: AppBar(

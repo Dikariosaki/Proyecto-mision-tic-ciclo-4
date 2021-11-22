@@ -10,6 +10,8 @@ class GestionUsuario extends StatefulWidget {
 class GestionUsuarioApp extends State<GestionUsuario>{
   @override
   Widget build(BuildContext context){
+
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Gestion usuario"),
@@ -22,7 +24,7 @@ class GestionUsuarioApp extends State<GestionUsuario>{
             EdgeInsets.only(top:20),
             child: ElevatedButton(
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) => RegistroUser() ));
+                Navigator.push(context, MaterialPageRoute(builder: (_) => RegistroUser()));
               }
               ,
                 child: Text("Registro de Usuario"),
@@ -64,7 +66,7 @@ class GestionUsuarioApp extends State<GestionUsuario>{
               EdgeInsets.only(top:20),
               child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) => Login() ));
+                    Navigator.push(context, MaterialPageRoute(builder:   (_) => Login()));
                   }
                   ,
                   child: Text("Login"),

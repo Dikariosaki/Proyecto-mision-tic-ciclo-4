@@ -1,6 +1,8 @@
 import 'Package:flutter/material.dart';
+import 'package:proyecto_grupo1/CambioPass.dart';
 import 'RegistroUser.dart';
 import 'Login.dart';
+import 'CambioPass.dart';
 
 class GestionUsuario extends StatefulWidget {
   @override
@@ -35,7 +37,9 @@ class GestionUsuarioApp extends State<GestionUsuario>{
               padding:
               EdgeInsets.only(top:20),
               child: ElevatedButton(
-                  onPressed: () {}
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder:   (_) => CambioPass()));
+                  }
                   ,
                   child: Text("Cambio de password"),
 

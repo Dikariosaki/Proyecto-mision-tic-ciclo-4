@@ -1,6 +1,6 @@
 import 'Package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'buscar.dart';
+import '../buscar.dart';
 
 class Login extends StatefulWidget {
   @override

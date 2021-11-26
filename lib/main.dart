@@ -3,8 +3,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'buscar.dart';
 import 'Tiendas/Shop.dart';
-import 'package:proyecto_grupo1/Tiendas/ShopRegister.dart';
-import 'Usuarios/gestionUsuario.dart';
+import 'Tiendas/ShopRegister.dart';
+import 'Usuarios/GestionUsuario.dart';
+import 'Tiendas/GestionTiendas.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,8 @@ class Home extends StatefulWidget {
 }
 
 class HomeStart extends State<Home> {
+  TextEditingController busqueda=TextEditingController();
+  @override
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -64,7 +67,7 @@ class HomeStart extends State<Home> {
                     onPressed: () {
                       print("Presionado");
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => buscar()));
+                          context, MaterialPageRoute(builder: (_) => buscar(busqueda.text)));
                     },
                     child: Text("buscar"),
                   )
@@ -76,7 +79,7 @@ class HomeStart extends State<Home> {
                     onPressed: () {
                       print("Presionado");
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => shop()));
+                          context, MaterialPageRoute(builder: (_) => Shop()));
                     },
                     child: Text("Listado de tiendas"),
                   )),

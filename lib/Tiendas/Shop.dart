@@ -1,15 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'ShopInterface.dart';
 
-class shop extends  StatefulWidget{
+class Shop extends  StatefulWidget{
   @override
   ShopApp createState() => ShopApp();
 
 }
 
-class ShopApp extends State <shop>{
+class ShopApp extends State <Shop>{
 
   Widget build (BuildContext context) {
     Widget titleSction=Container(

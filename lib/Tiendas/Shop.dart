@@ -1,99 +1,59 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'ShopInterface.dart';
 
-class Shop extends  StatefulWidget{
+class Shop extends StatefulWidget {
   @override
   ShopApp createState() => ShopApp();
-
 }
 
-class ShopApp extends State <Shop>{
-
-  Widget build (BuildContext context) {
-    Widget titleSction=Container(
-     padding: const EdgeInsets.all(32),
-      child: Row(
-        children:[
-          Expanded(child:
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start ,
-            children: [
-              Container(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  "Comidas rapidas El gordo",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold
-                  )
-                ),
-              ),
-              Text("Perri calientes. Hamburguesas, Salchipapa, Mazorcadas y todo tipo de comidas rapidas",
-              style: TextStyle(
-                color: Colors.lightGreenAccent[500],
-              )
-              )
-            ]
-          )
-        ),
-          Container(
-            width: 80,
-            height: 80,
-            child: Image.asset("Image/comidarapida.png"),
-          ),
-          ElevatedButton(onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (_) => ShopInterface()));
-          }, child: Text("Entrar"))
-          ],
-      ),
-    );
+class ShopApp extends State<Shop> {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de tiendas'),
       ),
-      body: new Container(
+      body: Container(
         child: Center(
           child: StreamBuilder(
-            stream: FirebaseFirestore.instance.collection("Tiendas").snapshots(),
-            builder: (BuildContext context,AsyncSnapshot<QuerySnapshot> snapshot){
+            stream:
+                FirebaseFirestore.instance.collection("Tiendas").snapshots(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               if (!snapshot.hasData) return CircularProgressIndicator();
               return ListView.builder(
-                itemCount: snapshot.data!.docs.length,// define las iteraciones
-                itemBuilder: (BuildContext context, int index){
+                itemCount: snapshot.data!.docs.length, // define las iteraciones
+                itemBuilder: (BuildContext context, int index) {
                   return new Card(
                     child: new Column(
-                      children:<Widget>[
+                      children: <Widget>[
                         Container(
-                          padding:const EdgeInsets.all(15),
-                          child: Row(
-                              children:[
-                                Expanded(child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                        padding:
-                                        const EdgeInsets.only(bottom: 10),
-                                        child:Text(snapshot.data!.docs[index].get("nombreTienda"))
-                                    ),
-                                    Text(snapshot.data!.docs[index].get("descrip")
-                                      ,
-                                      style: TextStyle(
-                                        color: Colors.green[500],
-                                      ),
-                                    ),
-
-                                  ],
-                                )),
+                          padding: const EdgeInsets.all(15),
+                          child: Row(children: [
+                            Expanded(
+                                child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Container(
-                                  width: 80,
-                                  height: 80,
-                                  child: Image.asset('image/'+snapshot.data!.docs[index].get("ruta")),
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Text(snapshot.data!.docs[index]
+                                        .get("nombreTienda"))),
+                                Text(
+                                  snapshot.data!.docs[index].get("descrip"),
+                                  style: TextStyle(
+                                    color: Colors.green[500],
+                                  ),
                                 ),
-                                ElevatedButton(onPressed: (){}, child: Text('Entrar'))
-                              ]
-                          ),
+                              ],
+                            )),
+                            Container(
+                              width: 80,
+                              height: 80,
+                              child: Image.asset('image/' +
+                                  snapshot.data!.docs[index].get("ruta")),
+                            ),
+                            ElevatedButton(
+                                onPressed: () {}, child: Text('Entrar'))
+                          ]),
                         )
                       ],
                     ),
@@ -106,5 +66,4 @@ class ShopApp extends State <Shop>{
       ),
     );
   }
-
 }

@@ -26,7 +26,7 @@ class Home extends StatefulWidget {
 }
 
 class HomeStart extends State<Home> {
-  TextEditingController busqueda=TextEditingController();
+  TextEditingController busqueda = TextEditingController();
   @override
   @override
   Widget build(BuildContext context) {
@@ -67,33 +67,26 @@ class HomeStart extends State<Home> {
                     onPressed: () {
                       print("Presionado");
                       Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => buscar(busqueda.text)));
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => buscar(busqueda.text)));
                     },
                     child: Text("buscar"),
-                  )
+                  )),
+              Padding(
+                padding:
+                EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: Size(150, 45)),
+                  onPressed: () {
+
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => GestionTiendas()));
+                  },
+                  child: Text('Gestionar tienda'),
+                ),
               ),
-              Padding(
-                  padding:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print("Presionado");
-                      Navigator.push(
-                          context, MaterialPageRoute(builder: (_) => Shop()));
-                    },
-                    child: Text("Listado de tiendas"),
-                  )),
-              Padding(
-                  padding:
-                      EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      print("Presionado");
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => ShopRegister()));
-                    },
-                    child: Text("registrar tiendas"),
-                  )),
               Padding(
                 padding:
                     EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),

@@ -91,7 +91,6 @@ class RegistroUserApp extends State<RegistroUser> {
                 padding: EdgeInsets.only(left: 15, top: 15, right: 15, bottom: 0),
                 // PÁGINA WEB
                 child: TextField(
-                  obscureText: true,
                   controller: direccion,
                   decoration: InputDecoration(
                       labelText: "Direccion",

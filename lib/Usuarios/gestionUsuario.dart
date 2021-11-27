@@ -1,95 +1,90 @@
 import 'package:flutter/material.dart';
-import '../CambioPass.dart';
+import 'CambioPass.dart';
 import 'RegistroUser.dart';
 import 'Login.dart';
 
 import 'ModificarUsuario.dart';
 
-
 class GestionUsuario extends StatefulWidget {
   @override
   GestionUsuarioApp createState() => GestionUsuarioApp();
 }
+
 //
 class GestionUsuarioApp extends State<GestionUsuario> {
   @override
   Widget build(BuildContext context) {
-
     ///++++++++++++++++++++++++++++
     return Scaffold(
       appBar: AppBar(
         title: Text("Gestion Usuario"),
-      ),body: SingleChildScrollView(
-      padding: EdgeInsets.all(20),
-      child: Column(
-        children: [
-          Padding(
-            padding:
-            EdgeInsets.only(top:20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_) => RegistroUser()));
-              }
-              ,
-              child:Text("Registro de usuario"),
-            ),
-          ),
-          Padding(
-            padding:
-            EdgeInsets.only(top:20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => CambioPass()));
-              }
-              ,
-              child:Text("Cambio de contraseña"),
-            ),
-          ),
-          Padding(
-            padding:
-            EdgeInsets.only(top:20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){
-                // Navigator.push(
-                //   context, MaterialPageRoute(builder: (_) => BajaUsuario()));
-                mensaje("Inactivar Usuario","¿Desea inactivar al usuario?");
-              }
-              ,
-              child:Text("Dar de baja"),
-            ),
-          ),
-          Padding(
-            padding:
-            EdgeInsets.only(top:20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_) => ModificarUsuario()));
-              }
-              ,child:Text("modificar de usuario"),
-            ),
-          ),
-          Padding(
-            padding:
-            EdgeInsets.only(top:20),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (_) => Login()));
-              },
-              child:Text("Login"),
-            ),
-          )
-        ],
       ),
-
-    ),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => RegistroUser()));
+                },
+                child: Text("Registro de usuario"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => CambioPass()));
+                },
+                child: Text("Cambio de contraseña"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+                onPressed: () {
+                  // Navigator.push(
+                  //   context, MaterialPageRoute(builder: (_) => BajaUsuario()));
+                  mensaje("Inactivar Usuario", "¿Desea inactivar al usuario?");
+                },
+                child: Text("Dar de baja"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => ModificarUsuario()));
+                },
+                child: Text("modificar de usuario"),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
+                onPressed: () {
+                  Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => Login()));
+                },
+                child: Text("Login"),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
+
   void mensaje(String titulo, String mess) {
     showDialog(
         context: context,
@@ -99,7 +94,8 @@ class GestionUsuarioApp extends State<GestionUsuario> {
             content: Text(mess),
             actions: <Widget>[
               Padding(
-                padding: EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
+                padding:
+                    EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
                 child: TextField(
                   // controller: correo,
                   decoration: InputDecoration(
@@ -111,7 +107,8 @@ class GestionUsuarioApp extends State<GestionUsuario> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
+                padding:
+                    EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
                 child: TextField(
                   // controller: correo,
                   decoration: InputDecoration(
@@ -127,16 +124,15 @@ class GestionUsuarioApp extends State<GestionUsuario> {
                   Navigator.of(context).pop();
                 },
                 child:
-                Text("Cancelar", style: TextStyle(color: Colors.blueGrey)),
+                    Text("Cancelar", style: TextStyle(color: Colors.blueGrey)),
               ),
               RaisedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
                 child:
-                Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
+                    Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
               ),
-
             ],
           );
         });

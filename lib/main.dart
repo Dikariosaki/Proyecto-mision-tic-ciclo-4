@@ -33,9 +33,17 @@ class HomeStart extends State<Home> {
     return MaterialApp(
       title: "bienvenidos grupo 06",
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(" Home App grupo 06"),
-        ),
+        appBar: AppBar(title: Text(" Home App grupo 06"), actions: [
+          FloatingActionButton(
+            onPressed: () {
+              // Navigator.push(context,MaterialPageRoute(builder: (_) => ItemRegister(tiendaId.toString())));
+            },
+            tooltip: 'Agregar producto',
+            child: const Icon(Icons.shopping_cart),
+            //child: Text("add"),
+            backgroundColor: Colors.green,
+          )
+        ]),
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
@@ -75,12 +83,10 @@ class HomeStart extends State<Home> {
                   )),
               Padding(
                 padding:
-                EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
+                    EdgeInsets.only(left: 20, top: 20, right: 20, bottom: 0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: Size(150, 45)),
                   onPressed: () {
-
-
                     Navigator.push(context,
                         MaterialPageRoute(builder: (_) => GestionTiendas()));
                   },

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_grupo1/Tiendas/Tienda.dart';
 import 'Tiendas/ShopOne.dart';
 
 class buscar extends StatefulWidget {
@@ -66,11 +67,7 @@ class BuscarApp extends State<buscar> {
                               ),
                               ElevatedButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (_) => ShopOne(snapshot
-                                                .data!.docs[index].id)));
+                                    //   Navigator.push(context, MaterialPageRoute(builder: (_) => ShopOne(snapshot.data!.docs[index].id)));
                                   },
                                   child: Text('Entrar'))
                             ]),
@@ -78,9 +75,9 @@ class BuscarApp extends State<buscar> {
                         ],
                       ),
                     );
+                  } else {
+                    return new Card();
                   }
-                  return new Card();
-                  ;
                 },
               );
             },

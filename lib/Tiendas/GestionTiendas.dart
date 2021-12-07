@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'ShopRegister.dart';
 import 'package:proyecto_grupo1/Tiendas/Shop.dart';
 import '../buscar.dart';
+import 'Shop.dart';
 
 class GestionTiendas extends StatefulWidget {
   @override

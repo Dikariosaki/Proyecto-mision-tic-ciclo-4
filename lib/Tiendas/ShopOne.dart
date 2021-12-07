@@ -1,38 +1,45 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:proyecto_grupo1/Productos/itemRegister.dart';
+import 'package:proyecto_grupo1/Tiendas/Tienda.dart';
+import 'package:proyecto_grupo1/Usuarios/Login.dart';
+import 'package:proyecto_grupo1/Usuarios/Token.dart';
 
 class ShopOne extends StatefulWidget {
-  final String DOC_ID;
-  ShopOne(this.DOC_ID);
+  final Tienda objetoTienda;
+  ShopOne(this.objetoTienda);
   @override
   ShopOneApp createState() => ShopOneApp();
 }
 
 //
 class ShopOneApp extends State<ShopOne> {
-  ShopOneApp() {
+  /*ShopOneApp() {
     validarDatos();
     //
-  }
+  }*/
   // String titulo="default";
-  String nombre = "default name";
+  /* String nombre = "default name";
   String descrCorta = "defalut short";
   String descrLarga = "default long";
-  String logo = "Hamburguesas.jpg";
+  String logo = "logo.png";
+  String tiendaId = "";*/
+  String idUser = "";
+  final firebase = FirebaseFirestore.instance;
 
-  validarDatos() async {
+  /* validarDatos() async {
     try {
       CollectionReference ref =
           FirebaseFirestore.instance.collection("Tiendas");
       QuerySnapshot usuario = await ref.get();
       if (usuario.docs.length != 0) {
         print(widget.DOC_ID.toString() + " prueba");
-
         for (var cursor in usuario.docs) {
           if (cursor.id == widget.DOC_ID.toString()) {
             //String titulo=cursor.get("nombreTienda");
             this.nombre = cursor.get("nombreTienda");
             this.descrCorta = cursor.get("descrip");
+            this.tiendaId = cursor.id;
             // String descrLarga="default long";
             logo = cursor.get("ruta");
           }
@@ -40,6 +47,18 @@ class ShopOneApp extends State<ShopOne> {
       } else {
         print("No hay elementos en la colección");
       }
+    } catch (e) {
+      print(e);
+    }
+  }
+*/
+  registrarCarrito(String idTienda, String idUsuario, String idProducto) async {
+    try {
+      await firebase.collection("Carrito").doc().set({
+        "UserId": idUsuario,
+        "ShopId": idTienda,
+        "ItemId": idProducto,
+      });
     } catch (e) {
       print(e);
     }
@@ -60,14 +79,14 @@ class ShopOneApp extends State<ShopOne> {
                 Container(
                   padding: const EdgeInsets.only(bottom: 8),
                   child: Text(
-                    this.nombre,
+                    widget.objetoTienda.nombre,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
                 Text(
-                  this.descrCorta,
+                  widget.objetoTienda.descripcion,
                   style: TextStyle(
                     color: Colors.grey[500],
                   ),
@@ -101,37 +120,136 @@ class ShopOneApp extends State<ShopOne> {
     Widget textSection = Container(
       padding: const EdgeInsets.all(32),
       child: Text(
-        descrLarga,
+        widget.objetoTienda.descripcion,
         softWrap: true,
       ),
     );
 
     return MaterialApp(
-      title: this.nombre,
+      title: widget.objetoTienda.nombre,
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(this.nombre),
-        ),
-        body: ListView(
-          children: [
-            Image.asset(
-              'image/' + logo,
-              width: 600,
-              height: 240,
-              fit: BoxFit.cover,
-            ),
-            titleSection,
-            buttonSection,
-            textSection,
-            Container(
-                child: FloatingActionButton(
-              onPressed: () {},
+          appBar: AppBar(title: Text(widget.objetoTienda.nombre), actions: [
+            FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) =>
+                            itemRegister(widget.objetoTienda.idTienda)));
+              },
               tooltip: 'Agregar producto',
-              child: const Icon(Icons.add),
-            )),
-          ],
-        ),
-      ),
+              child: const Icon(Icons.add_box),
+              //child: Text("add"),
+              backgroundColor: Colors.green,
+            )
+          ]),
+          body: Column(
+            children: [
+              Expanded(
+                child: ListView(
+                  children: [
+                    Image.asset(
+                      'image/' + widget.objetoTienda.imagen,
+                      width: 600,
+                      height: 240,
+                      fit: BoxFit.cover,
+                    ),
+                    titleSection,
+                    buttonSection,
+                    textSection,
+                  ],
+                ),
+              ),
+              Expanded(
+                child: StreamBuilder(
+                  stream: FirebaseFirestore.instance
+                      .collection("Productos")
+                      .snapshots(),
+                  builder: (BuildContext context,
+                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                    if (!snapshot.hasData) return CircularProgressIndicator();
+                    return ListView.builder(
+                      itemCount:
+                      snapshot.data!.docs.length, // define las iteraciones
+                      itemBuilder: (BuildContext context, int index) {
+                        //print(snapshot.data!.docs[index].id +
+                        //   " - " +
+                        //  widget.objetoTienda.idTienda);
+                        if (snapshot.data!.docs[index].get("TiendaId") ==
+                            widget.objetoTienda.idTienda) {
+                          return new Card(
+                            child: new Column(
+                              children: <Widget>[
+                                Container(
+                                  padding: const EdgeInsets.all(15),
+                                  child: Row(
+                                    children: [
+                                      Expanded(
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              Container(
+                                                  padding: const EdgeInsets.only(
+                                                      bottom: 10),
+                                                  child: Text(snapshot
+                                                      .data!.docs[index]
+                                                      .get("Nombre"))),
+                                              Text(
+                                                snapshot.data!.docs[index]
+                                                    .get("Descripcion"),
+                                                style: TextStyle(
+                                                  color: Colors.green[500],
+                                                ),
+                                              ),
+                                            ],
+                                          )),
+                                      Container(
+                                        width: 80,
+                                        height: 80,
+                                        child: Image.asset(
+                                            'image/' /*+snapshot.data!.docs[index].get("ruta")*/),
+                                      ),
+                                      FloatingActionButton(
+                                          onPressed: () async {
+                                            Token tk = new Token();
+                                            String idUser = await tk.validarToken();
+                                            print(idUser);
+                                            if (idUser == "vacio") {
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (_) => Login()));
+                                            }
+                                          },
+                                          heroTag:null,
+                                          child: const Icon(
+                                              Icons.add_shopping_cart),
+                                          backgroundColor: Colors.blueGrey,
+                                          tooltip: 'Agregar al carrito'),
+                                      FloatingActionButton(
+                                          onPressed: () {},
+                                          // child: const Icon(Icons.add_shopping_cart),
+                                          child: Text("Ver"),
+                                          heroTag:null,
+                                          backgroundColor: Colors.blue,
+                                          tooltip: 'Ver producto')
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          );
+                        } else {
+                          return new Card();
+                        }
+                      },
+                    );
+                  },
+                ),
+              )
+            ],
+          )),
     );
   }
 

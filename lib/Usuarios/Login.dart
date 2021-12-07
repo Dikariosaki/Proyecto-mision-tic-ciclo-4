@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:proyecto_grupo1/Usuarios/Token.dart';
 import '../buscar.dart';
 
 class Login extends StatefulWidget {
@@ -16,7 +17,7 @@ class LoginApp extends State<Login> {
   validarDatos() async {
     try {
       CollectionReference ref =
-          FirebaseFirestore.instance.collection("Usuarios");
+      FirebaseFirestore.instance.collection("Usuarios");
       QuerySnapshot usuario = await ref.get();
 
       if (usuario.docs.length != 0) {
@@ -24,22 +25,23 @@ class LoginApp extends State<Login> {
         print(usuario.docs.length);
         int flag = 0;
         for (var cursor in usuario.docs) {
-          print(cursor.get("Correo") + "||" + correo.text);
+          print(cursor.get("Correo")+ "||"+correo.text);
 
           if (cursor.get("Correo") == correo.text) {
             print(cursor.get("Password"));
             if (cursor.get("Password") == pass.text) {
-              mensaje("Correcto", "Usuario correcto");
+              // mensaje("Correcto","Usuario correcto");
               print(cursor.get("nombreUsuario"));
               flag = 1;
-              // Navigator.push(
-              // context, MaterialPageRoute(builder: (_) => buscar()));
+              Token tk=new Token();
+              tk.guardarToken(cursor.id.toString());
+              Navigator.of(context).pop();
             }
           }
         }
         print(flag);
         if (flag == 0) {
-          mensaje("No encotrado", "No se encontró el usuario");
+          mensaje("No encotrado","No se encontró el usuario");
         }
       } else {
         print("No hay elementos en la colección ");
@@ -124,7 +126,7 @@ class LoginApp extends State<Login> {
                   Navigator.of(context).pop();
                 },
                 child:
-                    Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
+                Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
               )
             ],
           );

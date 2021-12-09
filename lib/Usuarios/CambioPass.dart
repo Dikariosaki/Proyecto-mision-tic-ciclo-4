@@ -39,6 +39,7 @@ class CambioPassApp extends State<CambioPass> {
                     .doc(cursor.id)
                     .set({
                   "nombreUsuario":cursor.get("nombreUsuario"),
+                  "Direccion":cursor.get("Direccion"),
                   "Correo":cursor.get("Correo"),
                   "Telefono":cursor.get("Telefono"),
                   "Password":passN.text,

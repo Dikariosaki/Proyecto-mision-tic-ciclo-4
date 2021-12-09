@@ -32,7 +32,7 @@ class ShopRegisterApp extends State<ShopRegister> {
     ///++++++++++++++++++++++++++++
     return Scaffold(
         appBar: AppBar(
-          title: Text("Regisgtro de tiendas"),
+          title: Text("Registro de tiendas"),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),

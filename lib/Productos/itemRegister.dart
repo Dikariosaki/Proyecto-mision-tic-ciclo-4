@@ -39,7 +39,7 @@ class itemRegisterApp extends State<itemRegister> {
     ///++++++++++++++++++++++++++++
     return Scaffold(
         appBar: AppBar(
-          title: Text("Regisgtro de Usuario"),
+          title: Text("Registro del producto"),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),

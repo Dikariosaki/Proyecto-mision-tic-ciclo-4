@@ -39,7 +39,7 @@ class RegistroUserApp extends State<RegistroUser> {
     ///++++++++++++++++++++++++++++
     return Scaffold(
         appBar: AppBar(
-          title: Text("Regisgtro de Usuario"),
+          title: Text("Registro de Usuario"),
         ),
         body: SingleChildScrollView(
           padding: const EdgeInsets.all(20),

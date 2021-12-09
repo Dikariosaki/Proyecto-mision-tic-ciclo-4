@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'ModificarTiendas.dart';
 import 'ShopRegister.dart';
 import 'package:proyecto_grupo1/Tiendas/Shop.dart';
 import '../buscar.dart';
@@ -41,7 +42,7 @@ class GestionTiendasApp extends State<GestionTiendas> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
                   onPressed: () {
-                    //   Navigator.push(context, MaterialPageRoute(builder: (_) => Login()));
+                     Navigator.push(context, MaterialPageRoute(builder: (_) => ModificarTiendas()));
                   },
                   child: Text("Modificar tienda"),
                 ),

@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
 class LoginApp extends State<Login> {
   TextEditingController correo = TextEditingController();
   TextEditingController pass = TextEditingController();
-  //final firebase=FirebaseFirestore.instance;
+  final firebase=FirebaseFirestore.instance;
 
   validarDatos() async {
     try {
@@ -21,21 +21,20 @@ class LoginApp extends State<Login> {
       QuerySnapshot usuario = await ref.get();
 
       if (usuario.docs.length != 0) {
-        //print("flag");
-        print(usuario.docs.length);
+        //print(usuario.docs.length);
         int flag = 0;
         for (var cursor in usuario.docs) {
           print(cursor.get("Correo")+ "||"+correo.text);
 
           if (cursor.get("Correo") == correo.text) {
-            print(cursor.get("Password"));
+         //   print(cursor.get("Password"));
             if (cursor.get("Password") == pass.text) {
-              // mensaje("Correcto","Usuario correcto");
-              print(cursor.get("nombreUsuario"));
-              flag = 1;
-              Token tk=new Token();
-              tk.guardarToken(cursor.id.toString());
-              Navigator.of(context).pop();
+              mensaje("Correcto","Usuario correcto");
+              //print(cursor.get("nombreUsuario"));
+               flag = 1;
+               Token tk=new Token();
+               tk.guardarToken(cursor.id.toString());
+               Navigator.of(context).pop();
             }
           }
         }

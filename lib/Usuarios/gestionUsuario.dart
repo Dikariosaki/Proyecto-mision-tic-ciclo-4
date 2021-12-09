@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'CambioPass.dart';
 import 'RegistroUser.dart';
 import 'Login.dart';
-
 import 'ModificarUsuario.dart';
+import 'package:proyecto_grupo1/Usuarios/BajaUsuario.dart';
 
 class GestionUsuario extends StatefulWidget {
   @override
@@ -12,6 +13,12 @@ class GestionUsuario extends StatefulWidget {
 
 //
 class GestionUsuarioApp extends State<GestionUsuario> {
+  TextEditingController correo = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  final firebase = FirebaseFirestore.instance;
+
+
+
   @override
   Widget build(BuildContext context) {
     ///++++++++++++++++++++++++++++
@@ -50,9 +57,8 @@ class GestionUsuarioApp extends State<GestionUsuario> {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(minimumSize: Size(500, 50)),
                 onPressed: () {
-                  // Navigator.push(
-                  //   context, MaterialPageRoute(builder: (_) => BajaUsuario()));
-                  mensaje("Inactivar Usuario", "¿Desea inactivar al usuario?");
+                   Navigator.push(
+                    context, MaterialPageRoute(builder: (_) => BajaUsuario()));
                 },
                 child: Text("Dar de baja"),
               ),
@@ -85,7 +91,7 @@ class GestionUsuarioApp extends State<GestionUsuario> {
     );
   }
 
-  void mensaje(String titulo, String mess) {
+  /*void mensaje(String titulo, String mess) {
     showDialog(
         context: context,
         builder: (buildcontext) {
@@ -95,9 +101,9 @@ class GestionUsuarioApp extends State<GestionUsuario> {
             actions: <Widget>[
               Padding(
                 padding:
-                    EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
+                    EdgeInsets.only(left: 00, top: 00, right: 5, bottom: 5),
                 child: TextField(
-                  // controller: correo,
+                controller: correo,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -108,9 +114,9 @@ class GestionUsuarioApp extends State<GestionUsuario> {
               ),
               Padding(
                 padding:
-                    EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
+                    EdgeInsets.only(left: 00, top: 00, right: 5, bottom: 5),
                 child: TextField(
-                  // controller: correo,
+                  controller: pass,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -119,22 +125,28 @@ class GestionUsuarioApp extends State<GestionUsuario> {
                   ),
                 ),
               ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child:
-                    Text("Cancelar", style: TextStyle(color: Colors.blueGrey)),
-              ),
-              RaisedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child:
-                    Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
-              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child:
+                        Text("Cancelar", style: TextStyle(color: Colors.blueGrey)),
+                  ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => BajaUsuario()));
+                  },
+                  child:
+                      Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),
+                ),
+            ],
+          ),
             ],
           );
         });
-  }
+  }*/
 }
+

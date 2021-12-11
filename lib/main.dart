@@ -6,6 +6,7 @@ import 'Tiendas/Shop.dart';
 import 'Tiendas/ShopRegister.dart';
 import 'Usuarios/GestionUsuario.dart';
 import 'Tiendas/GestionTiendas.dart';
+import 'carrito/ShoppingCart.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,9 +37,9 @@ class HomeStart extends State<Home> {
         appBar: AppBar(title: Text(" Home App grupo 06"), actions: [
           FloatingActionButton(
             onPressed: () {
-              // Navigator.push(context,MaterialPageRoute(builder: (_) => ItemRegister(tiendaId.toString())));
+              Navigator.push(context,MaterialPageRoute(builder: (_) => ShoppingCart()));
             },
-            tooltip: 'Agregar producto',
+            tooltip: 'Carrito de compras',
             child: const Icon(Icons.shopping_cart),
             //child: Text("add"),
             backgroundColor: Colors.green,

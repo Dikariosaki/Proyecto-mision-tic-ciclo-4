@@ -52,7 +52,7 @@ class BajaUsuarioApp extends State<BajaUsuario> {
         "Telefono": telefono,
         "Direccion": direccion,
         "Password": pass,
-        "Estado": estado
+        "Estado": estado.toString()
       });
     } catch (e) {
       print(e);

@@ -15,12 +15,14 @@ class Shop extends StatefulWidget {
 class ShopApp extends State<Shop> {
   Tienda tiendaObjeto=new Tienda();
 
-
   Widget build(BuildContext context) {
+    ThemeData(primarySwatch: Colors.deepPurple);
     return Scaffold(
       appBar: AppBar(
         title: Text('Lista de tiendas'),
+
       ),
+
       body:  Container(
         child: Center(
           child: StreamBuilder(

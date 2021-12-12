@@ -10,6 +10,8 @@ import 'package:proyecto_grupo1/carrito/ShoppingCart.dart';
 
 import 'Tienda.dart';
 
+ var idUsuariomain= "";
+
 class ShopOne extends StatefulWidget {
   final Tienda objetoTienda;
   ShopOne(this.objetoTienda);
@@ -19,8 +21,17 @@ class ShopOne extends StatefulWidget {
 
 class ShopOneApp extends State<ShopOne> {
 
+  String idUser = "";/*ShopOneApp() {
+    validarDatos();
+    //
+  }*/
+  // String titulo="default";
+  /* String nombre = "default name";
+  String descrCorta = "defalut short";
+  String descrLarga = "default long";
+  String logo = "logo.png";
+  String tiendaId = "";*/
   final firebase = FirebaseFirestore.instance;
-
 
   registrarCarrito(Carrito cart) async {
     try {
@@ -32,7 +43,7 @@ class ShopOneApp extends State<ShopOne> {
         "NombreItem":cart.nombreItem,
         "Descripcion":cart.descripcionItem,
         "Cantidad":cart.cantidad,
-        "total":cart.total
+        "total":cart.total,
 
       });
     } catch (e) {
@@ -42,6 +53,7 @@ class ShopOneApp extends State<ShopOne> {
 
   @override
   Widget build(BuildContext context) {
+
     Widget titleSection = Container(
       padding: const EdgeInsets.all(32),
       child: Row(
@@ -102,6 +114,7 @@ class ShopOneApp extends State<ShopOne> {
     );
 
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       title: widget.objetoTienda.nombre,
       home: Scaffold(
           appBar: AppBar(title: Text(widget.objetoTienda.nombre), actions: [
@@ -190,7 +203,7 @@ class ShopOneApp extends State<ShopOne> {
                                       FloatingActionButton(
                                           onPressed: () async {
                                             Token tk = new Token();
-                                            String idUser = await tk.validarToken();
+                                            String idUser = await tk.validarToken("");
                                             print(idUser);
                                             if (idUser == "vacio") {
                                               Navigator.push(
@@ -214,7 +227,7 @@ class ShopOneApp extends State<ShopOne> {
                                           heroTag:null,
                                           child: const Icon(
                                               Icons.add_shopping_cart),
-                                          backgroundColor: Colors.blueGrey,
+                                          backgroundColor: Colors.indigoAccent,
                                           tooltip: 'Agregar al carrito'),
                                       FloatingActionButton(
                                           onPressed: () {},
@@ -288,11 +301,13 @@ class ShopOneApp extends State<ShopOne> {
                 onPressed: () {
                   cart.cantidad=double.parse(cant.text);
                   cart.total=cart.cantidad*cart.precioItem;
+                  idUsuariomain=cart.idUser;
                   registrarCarrito(cart);
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (_) => ShoppingCart()));
+                          builder: (_) => ShoppingCart(cart.idUser)));
+
                 },
                 child:
                 Text("Aceptar", style: TextStyle(color: Colors.blueGrey)),

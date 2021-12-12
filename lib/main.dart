@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Tiendas/ShopOne.dart';
 import 'buscar.dart';
 import 'Tiendas/Shop.dart';
 import 'Tiendas/ShopRegister.dart';
 import 'Usuarios/GestionUsuario.dart';
 import 'Tiendas/GestionTiendas.dart';
 import 'carrito/ShoppingCart.dart';
+import 'package:proyecto_grupo1/carrito/Carrito.dart';
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,16 +36,17 @@ class HomeStart extends State<Home> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: "bienvenidos grupo 06",
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: Scaffold(
-        appBar: AppBar(title: Text(" Home App grupo 06"), actions: [
+        appBar: AppBar(title: Text("aplicacion grupo 6-01"), actions: [
           FloatingActionButton(
             onPressed: () {
-              Navigator.push(context,MaterialPageRoute(builder: (_) => ShoppingCart()));
+              Navigator.push(context,MaterialPageRoute(builder: (_) => ShoppingCart(idUsuariomain)));
             },
             tooltip: 'Carrito de compras',
             child: const Icon(Icons.shopping_cart),
             //child: Text("add"),
-            backgroundColor: Colors.green,
+            backgroundColor: Colors.indigoAccent,
           )
         ]),
         body: SingleChildScrollView(

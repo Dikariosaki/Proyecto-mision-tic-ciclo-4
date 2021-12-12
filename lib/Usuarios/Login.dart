@@ -12,7 +12,7 @@ class Login extends StatefulWidget {
 class LoginApp extends State<Login> {
   TextEditingController correo = TextEditingController();
   TextEditingController pass = TextEditingController();
-  final firebase=FirebaseFirestore.instance;
+  //final firebase=FirebaseFirestore.instance;
 
   validarDatos() async {
     try {
@@ -21,20 +21,30 @@ class LoginApp extends State<Login> {
       QuerySnapshot usuario = await ref.get();
 
       if (usuario.docs.length != 0) {
-        //print(usuario.docs.length);
+        //print("flag");
+        print(usuario.docs.length);
         int flag = 0;
         for (var cursor in usuario.docs) {
           print(cursor.get("Correo")+ "||"+correo.text);
 
           if (cursor.get("Correo") == correo.text) {
-         //   print(cursor.get("Password"));
+            print(cursor.get("Password"));
             if (cursor.get("Password") == pass.text) {
-              mensaje("Correcto","Usuario correcto");
-              //print(cursor.get("nombreUsuario"));
-               flag = 1;
-               Token tk=new Token();
-               tk.guardarToken(cursor.id.toString());
-               Navigator.of(context).pop();
+              // mensaje("Correcto","Usuario correcto");
+              print(cursor.get("nombreUsuario"));
+              flag = 1;
+              Token tk=new Token();
+              String idToken=await tk.validarToken("Login");
+              if(idToken!=0){
+                final firebase=FirebaseFirestore.instance;
+                try{
+                  firebase.collection("Tokens").doc(idToken).delete();
+                }catch (e){
+                  print(e);
+                }
+              }
+              tk.guardarToken(cursor.id.toString());
+              Navigator.of(context).pop();
             }
           }
         }
@@ -66,7 +76,7 @@ class LoginApp extends State<Login> {
                 child: Container(
                   width: 100,
                   height: 100,
-                  child: Image.asset('image/login.png'),
+                  child: Image.asset('image/Login.png'),
                 ),
               ),
             ),
@@ -85,6 +95,7 @@ class LoginApp extends State<Login> {
             Padding(
               padding: EdgeInsets.only(left: 40, top: 30, right: 5, bottom: 5),
               child: TextField(
+                obscureText:true,
                 controller: pass,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
